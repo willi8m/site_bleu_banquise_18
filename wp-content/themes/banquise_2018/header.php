@@ -54,16 +54,11 @@
     
 <!--Mise ne place du MENU-->
 <section class="menu">    
-    <nav>
-        <ul>
-            <li id="one"><a href="#accueil">Accueil</a></li>
-            <li id="two"><a href="#usine">Atelier</a></li>
-            <li id="three"><a href="#equipe">Equipe</a></li>
-            <li id="four"><a href="#realisation">Réalisation</a></li>
-            <li id="five"><a href="#contact">Contact</a></li>
-            <li style="width: 30px; height: 30px; padding: 0px; padding-top: 10px;"><a target="_blank" href="https://www.facebook.com/bleubanquise/?ref=br_rs"><img src="img/facebook-with-circle.svg"></a></li>
-        </ul>
-    </nav>
+   <?php
+register_nav_menus( array(
+‘menu-principal’ => ‘main_menu’
+) );
+?>
     <hr id="hr" />
 </section>
     
