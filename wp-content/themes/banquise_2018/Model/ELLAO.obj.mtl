@@ -1,0 +1,45 @@
+# File produced by Open Asset Import Library (http://www.assimp.sf.net)
+# (assimp v3.0.1270)
+
+newmtl Oeuvre d'art de Modèle de Forme00
+Kd 0.95686274766922 0.95686274766922 0.95686274766922
+Ks 0.95686274766922 0.95686274766922 0.95686274766922
+d 0.1399999856948853
+Ns 83.19999694824219
+illum 2
+
+newmtl Oeuvre d'art de Modèle de Forme011
+Ks 0.7843137383460999 0.7843137383460999 0.7843137383460999
+Ns 64
+illum 2
+map_Kd ELLAO_OeuvredartdeModèledeForme01_1_DiffuseMap.png
+
+newmtl Oeuvre d'art de Carton2
+Ks 1 1 1
+Ns 38.40000152587891
+illum 2
+map_Kd ELLAO_OeuvredartdeCarton_2_DiffuseMap.png
+
+newmtl Oeuvre d'art de Carton3
+Kd 1 1 1
+Ks 1 1 1
+Ns 25.60000038146973
+illum 2
+
+newmtl White Card4
+Kd 1 1 1
+Ks 1 1 1
+Ns 25.60000038146973
+illum 2
+
+newmtl Oeuvre d'art de Modèle de Forme05
+Ks 0.7843137383460999 0.7843137383460999 0.7843137383460999
+Ns 64
+illum 2
+map_Kd ELLAO_OeuvredartdeModèledeForme0_5_DiffuseMap.png
+
+newmtl New Label6
+Ks 1 1 1
+illum 1
+map_Kd ELLAO_NewLabel_6_DiffuseMap.png
+

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>THREE SEGUIN JEREMY</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				margin: 0px;
+				overflow: hidden;
+			}
+            canvas {
+				
+			}
+		</style>
+	</head>
+	<body>
+        <!--Appel du Canvas-->
+        <canvas id="myCanvas"></canvas>
+        
+        <!--Appel de la ressource three.js-->
+		<script src="../build/three.js"></script>
+        <script src="../build/OBJLoader.js"></script>
+        <script src="../build/MTLLoader.js"></script>
+        <script src="../build/DDSLoader.js"></script>
+        <script src="../controls/TrackballControls.js"></script>	
+        <script src="../controls/Detector.js"></script>
+        
+        <!--Script du canvas-->
+		<script>
+            var camera, scene, renderer, controls;
+            init();
+            animate();
+            
+            function init(){
+            //Parametrage général du Canvas
+			renderer = new THREE.WebGLRenderer({canvas: document.getElementById('myCanvas'), antialias: true, alpha: true});
+            renderer.setClearColor( 0x000000, 0 );
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+                
+            window.addEventListener( 'resize', onWindowResize, false );
+                
+            //Creation de la camera
+            camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 3000);
+            // camera.position.set(0, 0, 0);
+            camera.position.z = 200;
+                
+                controls = new THREE.TrackballControls( camera );
+				controls.rotateSpeed = 1.0;
+				controls.zoomSpeed = 1.2;
+				controls.panSpeed = 0.8;
+				controls.noZoom = false;
+				controls.noPan = false;
+				controls.staticMoving = true;
+				controls.dynamicDampingFactor = 0.3;
+				controls.keys = [ 65, 83, 68 ];
+				controls.addEventListener( 'change', render );   
+            
+            //Creation de la scene
+            scene = new THREE.Scene();
+            
+            //Creation d'une lumiere
+            //Lumiere diffuse
+            var ambientLight = new THREE.AmbientLight(0xffffff, 1);
+            scene.add(ambientLight);
+            //Lumere cible
+            var spotLight = new THREE.SpotLight(0xffffff, 0.5);
+            scene.add(spotLight);
+            spotLight.position.set(200, 200, 150);
+            
+            //MODEL obj
+            // texture
+				var onProgress = function ( xhr ) {
+					if ( xhr.lengthComputable ) {
+						var percentComplete = xhr.loaded / xhr.total * 100;
+						console.log( Math.round(percentComplete, 2) + '% downloaded' );
+					}
+				};
+				var onError = function ( xhr ) { };
+				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+				var mtlLoader = new THREE.MTLLoader();
+				mtlLoader.setPath( '../Model/' );
+				mtlLoader.load( 'ELLAO.obj.mtl', function( materials ) {
+					materials.preload();
+					var objLoader = new THREE.OBJLoader();
+					objLoader.setMaterials( materials );
+					objLoader.setPath( '../Model/' );
+					objLoader.load( 'ELLAO.obj', function ( object ) {
+						//object.position.y = - 95;
+						scene.add( object );
+					}, onProgress, onError );
+				});
+                
+                //appel fonction d'animation
+                requestAnimationFrame(render);
+                   
+            }
+            
+            
+            function render() {
+                //Appel du rendu
+                renderer.render(scene, camera);
+                
+            }
+            
+            function animate() {
+				requestAnimationFrame( animate );
+				render();
+                controls.update();
+			}
+            
+            function onWindowResize() {
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize( window.innerWidth, window.innerHeight );
+                controls.handleResize();
+				render();
+			}
+        
+            
+
+
+
+            
+            
+           
+            
+           
+		</script>
+
+	</body>
+</html>
